@@ -128,12 +128,41 @@ class Page {
                 <label for='pw'>Password</label><br>
                 <input type='text' id='pw' name='pw'><br>
                 <label for='pw2'>Password again</label><br>
-                <input type='text' id='pw2' name='pw2'><br>
+                <input type='text' id='pw2' name='pw2'><br><br>
                 <input type='submit' value='Submit'>
             </form>
             <br><br>
         <div>
         ";
+    }
+
+    static function createVerification() {
+        echo"
+        <style>
+        #i1 {
+            border: 1px solid black;
+            padding: 5px;
+            width: 20%;
+            text-align: center;
+            margin: auto;
+            margin-top: 10%;
+        }
+        </style>
+        <div id='i1'>
+            <h2>Verification</h2>
+            <form method='post' action=''>
+                <label for='num'>Numbers</label><br>
+                <input type='number' id='num' name='num'><br><br>
+                <input type='submit' value='Submit'>
+            </form>
+            <br><br>
+        <div>
+        ";
+    }
+
+    static function emailBody($token) {
+        return "<p>Here is your verification token: '$token'</p>
+        <p>Return to login: <a href='http://localhost:8000/login/login.php' target='_blank'>Click Here</a></p>";
     }
 }
 

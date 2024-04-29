@@ -21,6 +21,6 @@ if(isset($_POST['email'])) {
             color: red;
         }
         </style>";
-        echo "<p id='piri'>Sikertelen belépés!<p>";
+        echo "<p id='piri'>Unsuccessful login!<p>";
     }
 }  
