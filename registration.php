@@ -16,14 +16,7 @@ if(isset($_POST['name'])) {
     if($pw == $pw2) {
         if(Tools::pwIsGood($pw)) {
             $token = Tools::createToken();
-            $a = "";
-            $a .= $email;
-            $a .= ";";
-            $a .= $pw;
-            $a .= ";";
-            $a .= $token;
-            $a .= ";";
-            $a .= $name;
+            $a = $token;
             Tools::registration($mysqli, $name, $email, $pw, $token);
             Tools::sendEmail($email,Page::emailBody($token));
             header("Location: verification.php?token=$a");
