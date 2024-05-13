@@ -25,7 +25,7 @@ $sql = "CREATE TABLE IF NOT EXISTS Users (
     is_active tinyint default false,
     name varchar(50) not null,
     email varchar(25) not null unique,
-    password varchar(50) not null,
+    password varchar(200) not null,
     token varchar(100),
     token_valid_until datetime,
     created_at datetime default now(),

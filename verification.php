@@ -14,12 +14,11 @@ echo "<style>
             }
             </style>";
 echo "<p id='zold'>Verification e-mail sent!</p>";
-$ok = $_GET['token'];
-$stuff = explode(";", $ok);
-$email = $stuff[0];
-$pw = $stuff[1];
-$token = $stuff[2];
-$name = $stuff[3];
+$token = $_GET['token'];
+$a = Tools::getByToken($mysqli, $token);
+$email = $a[0][3];
+$pw = $a[0][4];
+$name = $a[0][2];
 if(isset($_POST['num'])) {
     $a = Tools::tokenTimeLeft($mysqli,$email,$pw);
     if(intval($a) > 0) {

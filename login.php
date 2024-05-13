@@ -17,7 +17,8 @@ else {
     if(isset($_POST['email'])) {
         $email = $_POST['email'];
         $password = $_POST['pw'];
-        if(Tools::userExist($mysqli,$email,$password)) {
+        $hash = tools::getPwByEmail($mysqli, $email)[0][0];
+        if(Tools::userExist($mysqli,$email,$password, $hash)) {
             if(Tools::isActive($mysqli,$email)) {
                 $_SESSION['email'] = $email;
                 header("Location: success.php");

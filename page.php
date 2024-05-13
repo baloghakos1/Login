@@ -71,9 +71,9 @@ class Page {
             <h2>Login</h2>
             <form method='post'>
                 <label for='email'>E-mail</label><br>
-                <input type='text' id='email' name='email'><br>
+                <input type='email' required id='email' name='email'><br>
                 <label for='pw'>Password</label><br>
-                <input type='text' id='pw' name='pw'><br><br>
+                <input type='password' required id='pw' name='pw'><br><br>
                 <input type='submit' value='Submit'>
             </form>
             <br><br>
@@ -124,11 +124,11 @@ class Page {
                 <label for='name'>Name</label><br>
                 <input type='text' id='name' name='name'><br>
                 <label for='email'>E-mail</label><br>
-                <input type='text' id='email' name='email'><br>
+                <input type='email' required id='email' name='email'><br>
                 <label for='pw'>Password</label><br>
-                <input type='text' id='pw' name='pw'><br>
+                <input type='password' required id='pw' name='pw'><br>
                 <label for='pw2'>Password again</label><br>
-                <input type='text' id='pw2' name='pw2'><br><br>
+                <input type='password' id='pw2' name='pw2'><br><br>
                 <input type='submit' value='Submit'>
             </form>
             <br><br>
