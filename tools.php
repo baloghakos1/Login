@@ -16,9 +16,9 @@ class Tools {
        }
     }
 
-    static function userExist($mysqli, $email, $pw) {
+    static function userExist($mysqli, $email, $pw, $hash) {
         $sql = "SELECT * FROM users 
-                WHERE email = '$email' AND password = '$pw'";
+                WHERE email = '$email' AND ". password_verify($pw, $hash). "";
         $asd = $mysqli->query($sql)->fetch_all();
         if($asd == null) {
             return false;
@@ -44,7 +44,7 @@ class Tools {
         $tokenTime = $currentDate->modify('+10 minutes');
         $tokenTime = $tokenTime->format('Y-m-d H:i:s');
         $sql = "INSERT INTO users (is_active, name, email, password, token, token_valid_until, created_at, registered_at, picture, deleted_at)
-        VALUES ('".false."', '$name', '$email', '$pw', '$token','$tokenTime','$time','','','')
+        VALUES ('".false."', '$name', '$email', '". password_hash($pw, PASSWORD_DEFAULT) . "', '$token','$tokenTime','$time','','','')
         ";
         $mysqli->query($sql);
     }
@@ -89,6 +89,17 @@ class Tools {
         $sql = "SELECT name FROM users WHERE email='$email'";
         return $mysqli->query($sql)->fetch_all();
     }
+
+    static function getByToken($mysqli, $token) {
+        $sql = "SELECT * FROM users WHERE token='$token'";
+        return $mysqli->query($sql)->fetch_all();
+    }
+
+    static function getPwByEmail($mysqli, $email) {
+        $sql = "SELECT password FROM users WHERE email='$email'";
+        return $mysqli->query($sql)->fetch_all();
+    }
+
 
     static function sendEmail($email, $body) {
         $mail = new PHPMailer();
