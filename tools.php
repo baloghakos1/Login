@@ -27,6 +27,17 @@ class Tools {
         }
     }
 
+    static function isActive($mysqli, $a) {
+        $sql = "SELECT is_active From users WHERE email = '$a'";
+        $asd = $mysqli->query($sql)->fetch_all();
+        if($asd[0][0] == 1) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     static function registration($mysqli, $name, $email, $pw, $token) {
         $currentDate = new DateTime('now');
         $time = ($currentDate->format('Y-m-d H:i:s'));
@@ -65,6 +76,18 @@ class Tools {
             $token .= rand(0,9);
         }
         return $token;
+    }
+
+    static function updateVerif($mysqli, $vmi) {
+        $currentDate = new DateTime('now');
+        $time = ($currentDate->format('Y-m-d H:i:s'));
+        $sql = "UPDATE users set token=0, token_valid_until=0, is_active=1, registered_at='$time' WHERE name ='$vmi'";
+        $mysqli->query($sql);
+    }
+
+    static function getNameByEmail($mysqli, $email) {
+        $sql = "SELECT name FROM users WHERE email='$email'";
+        return $mysqli->query($sql)->fetch_all();
     }
 
     static function sendEmail($email, $body) {
