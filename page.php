@@ -164,6 +164,15 @@ class Page {
         return "<p>Here is your verification token: '$token'</p>
         <p>Return to login: <a href='http://localhost:8000/login/login.php' target='_blank'>Click Here</a></p>";
     }
+
+    static function logoutButton() {
+        echo '
+            <form method="post" action="">
+                <button id="logout" name="logout" title="logout">
+                    Logout
+                </button>
+            </form>';
+    }
 }
 
 ?>

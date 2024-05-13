@@ -22,6 +22,8 @@ if(isset($_POST['name'])) {
             $a .= $pw;
             $a .= ";";
             $a .= $token;
+            $a .= ";";
+            $a .= $name;
             Tools::registration($mysqli, $name, $email, $pw, $token);
             Tools::sendEmail($email,Page::emailBody($token));
             header("Location: verification.php?token=$a");
